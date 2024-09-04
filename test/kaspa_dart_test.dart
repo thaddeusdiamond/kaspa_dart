@@ -8,11 +8,9 @@ import 'package:kaspa_dart/kaspa_dart.dart' as kaspa;
 
 import 'config.dart';
 
-
-
-
 void main() {
   test("create account", () {
+    print("## create account");
     final seedHex = kaspa.mnemonicToSeedHex(testWordsFiscal);
 
     final hd =
@@ -29,6 +27,9 @@ void main() {
   });
 
   test("sign transaction", () async {
+    print("##sign transaction");
+
+    const signOnly = true;
     final toAddress = Address.decodeAddress(testToAddress);
     final amountRaw = BigInt.from(11000000); // 0.11 KAS
 
@@ -46,7 +47,7 @@ void main() {
     final spendableUtxos = <Utxo>[];
     for (var value in testUtxos) {
       final utxo = Utxo.fromJson(
-          value,
+        value,
       );
       spendableUtxos.add(utxo);
     }
@@ -111,13 +112,24 @@ void main() {
       payload: unSignTx.payload?.hex,
     );
 
-    print("from address:\n$encoded \nsend to:\n$toAddress\nchange to:\n${changeAddress.encoded}");
+    print(
+        "from address:\n$encoded \nsend to:\n$toAddress\nchange to:\n${changeAddress.encoded}");
 
-    final client = KaspaClient.url('node.kaspium.io', isSecure: true);
+    if (signOnly) {
+      final message = kaspa.KaspadMessage(
+        submitTransactionRequest: kaspa.SubmitTransactionRequestMessage(
+          transaction: rpcTx,
+          allowOrphan: false,
+        ),
+      );
+      print("signed output\n${message.writeToJson()}");
+    } else {
+      final client = KaspaClient.url('node.kaspium.io', isSecure: true);
 
-    final txId = await client.submitTransaction(rpcTx);
+      final txId = await client.submitTransaction(rpcTx);
 
-    print("txId $txId");
-    print("check detail on https://explorer.kaspa.org/txs/$txId");
+      print("txId $txId");
+      print("check detail on https://explorer.kaspa.org/txs/$txId");
+    }
   });
 }

@@ -1,9 +1,15 @@
-## Kaspa dart sdk, thanks to  https://github.com/aspectron/kaspa-wallet and https://github.com/azbuky/kaspium_wallet
+## Kaspa dart sdk, thanks to
+
+https://github.com/aspectron/kaspa-wallet 
+
+and
+
+https://github.com/azbuky/kaspium_wallet
 
 
 
 
-before run test, add `config.dart` file under tests folder and put value
+before run test, add `config.dart` file under `tests` folder and put value
 
 ```dart
 
@@ -16,3 +22,5 @@ const utxoJsonString = '[{},{}]'
 ;
 
 ```
+
+then run case in [kaspa_dart_test.dart](test%2Fkaspa_dart_test.dart)
