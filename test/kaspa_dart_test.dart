@@ -15,7 +15,6 @@ void main() {
 
     final hd =
         kaspa.HdWallet.forSeedHex(seedHex, type: kaspa.HdWalletType.schnorr);
-
     final pair = hd.deriveKeyPair(typeIndex: 0, index: 0);
     print("privateKey: ${HEX.encode(pair.privateKey)}");
     print("publicKey:  ${HEX.encode(pair.publicKey)}");
