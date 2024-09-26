@@ -1,6 +1,6 @@
 name: kaspa_dart
 description: "A package for kaspa network, provide account create and sign transaction"
-version: 0.0.2
+version: 0.0.3
 homepage: "https://github.com/weishirongzhen/kaspa_dart"
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  decimal: ^3.0.2
+  decimal: ^2.3.2
   pointycastle: ^3.9.1
   hex: ^0.2.0
   crypto: ^3.0.5
@@ -19,8 +19,8 @@ dependencies:
   collection: ^1.18.0
   fast_immutable_collections: ^10.2.4
   freezed_annotation: ^2.4.4
-  http: ^1.2.2
-  protobuf: ^3.1.0
+  http: ^1.0.0
+  protobuf: ^2.1.0
   convert: ^3.1.1
 
 dev_dependencies:
