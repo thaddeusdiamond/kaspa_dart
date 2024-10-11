@@ -8,6 +8,7 @@ import '../grpc/rpc.pb.dart';
 import '../kaspa.dart';
 
 part 'types.freezed.dart';
+
 part 'types.g.dart';
 
 final kFeePerInput = BigInt.from(10000);
@@ -73,6 +74,7 @@ class UtxoChanges with _$UtxoChanges {
 @freezed
 class Utxo with _$Utxo {
   const Utxo._();
+
   const factory Utxo({
     required String address,
     required Outpoint outpoint,
@@ -98,6 +100,7 @@ class Utxo with _$Utxo {
 @Freezed(equal: false)
 class UtxoEntry with _$UtxoEntry {
   const UtxoEntry._();
+
   const factory UtxoEntry({
     required BigInt amount,
     required ScriptPublicKey scriptPublicKey,
@@ -143,6 +146,7 @@ class UtxoEntry with _$UtxoEntry {
 @freezed
 class ScriptPublicKey with _$ScriptPublicKey {
   const ScriptPublicKey._();
+
   const factory ScriptPublicKey({
     @JsonKey(fromJson: hexToBytes, toJson: bytesToHex)
     required Uint8List scriptPublicKey,
@@ -167,6 +171,7 @@ class ScriptPublicKey with _$ScriptPublicKey {
 @freezed
 class Outpoint with _$Outpoint {
   Outpoint._();
+
   factory Outpoint({
     required String transactionId,
     required int /*uint32*/ index,
@@ -189,6 +194,7 @@ class Outpoint with _$Outpoint {
 @freezed
 class TxInput with _$TxInput {
   const TxInput._();
+
   const factory TxInput({
     required Address address,
     required Outpoint previousOutpoint,
@@ -209,6 +215,7 @@ class TxInput with _$TxInput {
 @freezed
 class TxOutput with _$TxOutput {
   const TxOutput._();
+
   const factory TxOutput({
     /*uint64*/ required Int64 value,
     required ScriptPublicKey scriptPublicKey,

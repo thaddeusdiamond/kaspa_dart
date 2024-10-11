@@ -11,3 +11,5 @@ export 'package:kaspa_dart/kaspa/transaction/transaction_builder.dart';
 export 'package:kaspa_dart/kaspa/transaction/transaction_util.dart';
 export 'package:kaspa_dart/kaspa/grpc/rpc.pb.dart';
 export 'package:kaspa_dart/kaspa/grpc/messages.pb.dart';
+export 'package:kaspa_dart/kaspa/extend_private_key/crypto.dart';
+export 'package:kaspa_dart/kaspa/extend_private_key/ex_private_key.dart';

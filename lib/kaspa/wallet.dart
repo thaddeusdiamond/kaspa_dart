@@ -1,6 +1,10 @@
 import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart';
 import 'package:hex/hex.dart';
+import 'package:kaspa_dart/kaspa/bip32/src/utils/ecurve.dart';
+import 'package:kaspa_dart/kaspa/extend_private_key/crypto.dart';
+import 'package:kaspa_dart/kaspa/extend_private_key/ex_private_key.dart';
 
 import '../utils.dart';
 import 'bip32/bip32.dart';
@@ -34,6 +38,13 @@ String convertHdPublicKey(String hdPubKey, KaspaNetwork toNetwork) {
   final toNetworkType = networkTypeForNetwork(toNetwork);
   bip32.network = toNetworkType;
   return bip32.toBase58();
+}
+
+
+Uint8List privateKeyToPublicKey(
+    Uint8List privateKey,
+    ) {
+  return pointFromScalar(privateKey, true)!.sublist(1);
 }
 
 AddressPrefix addressPrefixForNetwork(KaspaNetwork network) {
@@ -124,6 +135,15 @@ abstract class HdWallet implements HdWalletView {
     required int typeIndex,
     required int index,
   });
+
+  String getExtendedPrivateKey(String seed) {
+    try {
+      return (ExPrivateKey.seed(seed).forPath("m") as ExtendedPrivateKey)
+          .toString();
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   Uint8List derivePublicKey({
     required int typeIndex,
